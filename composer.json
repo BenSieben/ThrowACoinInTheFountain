@@ -1,0 +1,12 @@
+{
+    "name": "cs174/hw5",
+    "description": "Throw-a-Coin-in-the-Fountain website",
+    "authors": [
+        {
+            "name": "Ben Sieben"
+        }
+    ],
+    "require": {
+        "setasign/fpdf" : ">=1.8.1"
+    }
+}
