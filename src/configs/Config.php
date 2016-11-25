@@ -23,5 +23,8 @@ class Config {
     const DB_DATABASE = "Fountain"; // name of database schema to use for all the website data
     const DB_PORT = "3307"; // port that database is on (note how this is NOT default port 3306!)
 
+    // Stripe constants
+    const STRIPE_TEST_PUBLISHABLE_KEY = "pk_test_Tcw44PoVIq6JU0oKGvW04egZ";
+    const STRIPE_CHARGE_AMOUNT = "25";
 }
 ?>

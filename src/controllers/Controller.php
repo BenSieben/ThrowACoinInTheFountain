@@ -19,8 +19,18 @@ class Controller {
      * to handle the forms
      */
     public function processForms() {
-        // TODO add more logic to the process form for different controllers
-        header("Location: " . Config::BASE_URL);
+        if(isset($_REQUEST['c'])) {  // c is name of Controller to call
+            if(strcmp($_REQUEST['c'], 'landing') === 0) {  // use LandingController
+                $lc = new LandingController();
+                $lc->callView();
+            }
+            else {  // default to LandingController if given bad class to use
+                header("Location: " . Config::BASE_URL . "?c=landing");
+            }
+        }
+        else {  // if $_REQUEST['c'] is not set, show default landing page
+            header("Location: " . Config::BASE_URL . "?c=landing");
+        }
     }
 }
 ?>
