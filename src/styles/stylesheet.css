@@ -1,0 +1,98 @@
+/***
+General stylesheet for all
+web pages in the website
+*/
+
+/*
+all body elements have centered text in sans-serif font
+*/
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background: #333333; /* dark gray */
+    color: #FFD4AE; /* beige */
+}
+
+/*
+bold h1 text
+*/
+h1 {
+    font-weight: bold;
+}
+
+/*
+italicize h2 text
+*/
+h2 {
+    font-style: italic;
+}
+
+/*
+anchors are light beige color
+*/
+a {
+    color: #FCF2E0; /* light beige */
+}
+
+/*
+hovered anchors are white
+*/
+a:hover {
+    color: #FFFFFF; /* white */
+}
+
+/*
+for chart id div (where graphs are drawn in the chart view)
+*/
+div#chart {
+    background: #FFFFFF; /* white */
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+Modify div inside the chart id div (i.e., the title inside the drawn chart)
+*/
+div#chart div {
+    color: #000000; /* black */
+}
+
+/*
+for clientErrorMessage id div (where client side error messages are shown for bad form on landing page)
+*/
+div#clientErrorMessage p{
+    background: #000000; /* black */
+    color: #ff0000; /* red */
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px 20px 20px; /* top right bottom left padding */
+}
+
+/*
+for serverErrorMessage id div (where server side error messages are shown)
+*/
+div#serverErrorMessage p{
+    background: #000000; /* black */
+    color: #ff0000; /* red */
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px 20px 20px; /* top right bottom left padding */
+}
+
+/*
+for xml / json / jsonp code display for sharing chart data
+*/
+pre#code {
+    background: #000000; /* black background */
+    font-family: Consolas, monospace;
+    word-wrap: break-word; /* allows a very long word with no spaces to span multiple lines */
+    font-size: 16px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px 20px 20px; /* top right bottom left padding */
+    text-align: left;
+}
