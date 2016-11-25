@@ -8,5 +8,10 @@
     ],
     "require": {
         "setasign/fpdf" : ">=1.8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "cs174\\hw5\\": "src/"
+        }
     }
 }
