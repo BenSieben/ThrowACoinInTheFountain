@@ -27,7 +27,7 @@ class LandingController extends Controller {
     private function initializeData() {
         $data = [];
         // Add Stripe information to the data
-        $data['stripe_test_key'] = Config::STRIPE_TEST_PUBLISHABLE_KEY;
+        $data['stripe_publishable_key'] = Config::STRIPE_PUBLISHABLE_KEY;
         $data['stripe_charge_amount'] = Config::STRIPE_CHARGE_AMOUNT;
         return $data;
     }

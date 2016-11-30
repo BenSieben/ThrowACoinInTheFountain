@@ -24,6 +24,10 @@ class Controller {
                 $lc = new LandingController();
                 $lc->callView();
             }
+            else if(strcmp($_REQUEST['c'], 'paysubmit') === 0) {  // use PaySubmissionController
+                $psc = new PaySubmissionController();
+                $psc->handlePaymentForm();
+            }
             else {  // default to LandingController if given bad class to use
                 header("Location: " . Config::BASE_URL . "?c=landing");
             }
