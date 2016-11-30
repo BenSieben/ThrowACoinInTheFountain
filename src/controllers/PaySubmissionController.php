@@ -22,16 +22,23 @@ class PaySubmissionController extends Controller{
      */
     public function handlePaymentForm() {
         $paySuccess = $this->tryPayment();
-        if($paySuccess) {
+        if($paySuccess === true) {
             $sev = new SendEmailView();
             $data = $this->setUpEmailViewData();
             $sev->render($data);
         }
         else {
-            // TODO throw user back to landing page with error message
+            // send user back to landing page with error message
+            header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
         }
     }
 
+    /**
+     * Tries to submit payment information to Stripe, using the generated credit_token
+     * @return bool|string true on payment success, or else an error
+     * message from Stripe is given (if no error message, empty string
+     * given back)
+     */
     private function tryPayment() {
         $message = "";
         if (empty($_REQUEST['amount']) || intval($_REQUEST['amount']) <= 0) {
@@ -46,11 +53,7 @@ class PaySubmissionController extends Controller{
             echo "\$$amount charged!";
             return true;
         } else {
-            echo "\$$amount charge did not go through!";
-            if (!empty($message)) {
-                echo "<br />$message";
-            }
-            return false;
+            return "\$$amount charge did not go through! (Stripe Message = \"" . $message . "\")";
         }
     }
 

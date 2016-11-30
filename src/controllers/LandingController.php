@@ -29,6 +29,10 @@ class LandingController extends Controller {
         // Add Stripe information to the data
         $data['stripe_publishable_key'] = Config::STRIPE_PUBLISHABLE_KEY;
         $data['stripe_charge_amount'] = Config::STRIPE_CHARGE_AMOUNT;
+        // Add error message (if applicable)
+        if(isset($_REQUEST['errmsg']) && strcmp($_REQUEST['errmsg'], "") !== 0) {
+            $data['errmsg'] = htmlentities(urldecode($_REQUEST['errmsg']));
+        }
         return $data;
     }
 }

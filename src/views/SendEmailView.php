@@ -28,8 +28,8 @@ class SendEmailView extends View {
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
 </head>
 <body>
-<h1><a href="<?= $data['base_url'] ?>">Throw-a-Coin-in-the-Fountain</a></h1>
-<h3>Send your wish out!</h3>
+    <h1><a href="<?= $data['base_url'] ?>">Throw-a-Coin-in-the-Fountain</a></h1>
+    <h3>Send your wish out!</h3>
 </body>
 </html>
 <?php

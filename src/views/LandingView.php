@@ -27,6 +27,13 @@ class LandingView extends View{
 </head>
 <body>
     <h1>Throw-a-Coin-in-the-Fountain</h1>
+<?php
+        if(isset($data['errmsg'])) {
+?>
+    <div id="serverErrorMessage"><p><?= $data['errmsg'] ?></p></div>
+<?php
+        }
+?>
     <label for="language">Language Selection</label>
     <select name="language" id="language">
         <option value="en" selected="selected">English</option>
