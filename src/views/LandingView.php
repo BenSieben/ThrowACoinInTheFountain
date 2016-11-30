@@ -34,6 +34,7 @@ class LandingView extends View{
     </select>
     <br />
     <h3>Make a New Wish!</h3>
+    <!--
     <form action="?c=paysubmit" method="get">
         <label for="name">Your name</label>
         <input type="text" name="name" id="name" />
@@ -51,7 +52,7 @@ class LandingView extends View{
             data-email="throwacoininthefountain@gmail.com">
         </script>
     </form>
-    <!--
+    -->
     <form id="purchase-stuff-form" method="post" action="?c=paysubmit">
         <input type="hidden" id="credit-token"  name="credit_token" value="" />
         <p><label for="amount">Amount:</label><input type="text" id="amount"
@@ -95,7 +96,6 @@ class LandingView extends View{
     <script>
         Stripe.setPublishableKey('<?= $data['stripe_publishable_key'] ?>');
     </script>
-    -->
 </body>
 </html>
 <?php
