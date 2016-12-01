@@ -12,8 +12,9 @@ namespace cs174\hw5\configs;
 class Config {
 
     // Constant for the full URL to where the index.php file is (leave out /index.php)
-    //const BASE_URL = "http://192.168.2.131/hw5";  // H
-    const BASE_URL = "http://10.250.22.186/hw5";  // S
+    const BASE_URL = "http://192.168.2.131/hw5";  // H
+    //const BASE_URL = "http://10.250.22.186/hw5";  // S
+    //const BASE_URL = "http://192.168.2.113/hw5";  // H-L
 
     // Database connection constants
     const DB_HOST = "127.0.0.1"; // host for the database
@@ -25,11 +26,13 @@ class Config {
     // Stripe constants
     const STRIPE_SECRET_KEY = "sk_test_Db7T5Pdsy6H5TBSS1CLgBhoI";
     const STRIPE_PUBLISHABLE_KEY = "pk_test_Tcw44PoVIq6JU0oKGvW04egZ";
-    const STRIPE_CHARGE_AMOUNT = 25;  // charge amount is in cents
+    const STRIPE_CHARGE_AMOUNT = 50;  // charge amount is in cents (minimum is 50 cents due to Stripe's own rules!)
     const STRIPE_CHARGE_URL = "https://api.stripe.com/v1/charges";
     const STRIPE_CHARGE_CURRENCY = "usd";
-    const STRIPE_CHARGE_DESCRIPTION = "Made a wish!";
-    const STRIPE_CHARGE_USERAGENT = "Throw-a-Coin-in-the-Fountain";
-    const STRIPE_TIMEOUT = 20;
+    const STRIPE_CHARGE_DESCRIPTION = "Made a wish at the fountain!";
+
+    // curl constants (for submitting payment token to Stripe)
+    const CURL_USERAGENT = "Throw-a-Coin-in-the-Fountain";
+    const CURL_TIMEOUT = 20;
 }
 ?>

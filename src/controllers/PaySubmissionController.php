@@ -29,7 +29,7 @@ class PaySubmissionController extends Controller{
         }
         else {
             // send user back to landing page with error message
-            header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
+            //header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
         }
     }
 
@@ -41,19 +41,14 @@ class PaySubmissionController extends Controller{
      */
     private function tryPayment() {
         $message = "";
-        if (empty($_REQUEST['amount']) || intval($_REQUEST['amount']) <= 0) {
-            echo "No charge amount given";
-            exit();
-        }
-        $amount = intval($_REQUEST['amount']);
         $token = $_REQUEST['credit_token'];
         $success = $this->charge(Config::STRIPE_CHARGE_AMOUNT, $token, $message);
         unset($_REQUEST['credit_token']);
         if ($success) {
-            echo "\$$amount charged!";
+            echo "\$" . (Config::STRIPE_CHARGE_AMOUNT / 100.0) . " charged!";
             return true;
         } else {
-            return "\$$amount charge did not go through! (Stripe Message = \"" . $message . "\")";
+            return "\$" . (Config::STRIPE_CHARGE_AMOUNT / 100.0) . " charge did not go through! (token = \"" . $message . "\")";
         }
     }
 
@@ -93,15 +88,15 @@ class PaySubmissionController extends Controller{
     private function getPage($site, $post_data = null, $user_password = null)
     {
         $agent = curl_init();
-        curl_setopt($agent, CURLOPT_USERAGENT, Config::STRIPE_CHARGE_USERAGENT);
+        curl_setopt($agent, CURLOPT_USERAGENT, Config::CURL_USERAGENT);
         curl_setopt($agent, CURLOPT_URL, $site);
         curl_setopt($agent, CURLOPT_AUTOREFERER, true);
         curl_setopt($agent, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($agent, CURLOPT_NOSIGNAL, true);
         curl_setopt($agent, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($agent, CURLOPT_FAILONERROR, true);
-        curl_setopt($agent, CURLOPT_TIMEOUT, Config::STRIPE_TIMEOUT);
-        curl_setopt($agent, CURLOPT_CONNECTTIMEOUT, Config::STRIPE_TIMEOUT);
+        curl_setopt($agent, CURLOPT_TIMEOUT, Config::CURL_TIMEOUT);
+        curl_setopt($agent, CURLOPT_CONNECTTIMEOUT, Config::CURL_TIMEOUT);
         //make lighttpd happier
         curl_setopt($agent, CURLOPT_HTTPHEADER, ['Expect:']);
         if ($post_data != null) {
