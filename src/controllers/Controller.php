@@ -28,6 +28,14 @@ class Controller {
                 $psc = new PaySubmissionController();
                 $psc->handlePaymentForm();
             }
+            else if(strcmp($_REQUEST['c'], 'email') === 0) {  // use SendEmailController
+                $sec = new SendEmailController();
+                $sec->setUpView();
+            }
+            else if(strcmp($_REQUEST[''], 'pdf') === 0) {  // use PDFController
+                $pdfc = new PDFController();
+                $pdfc->setUpView();
+            }
             else {  // default to LandingController if given bad class to use
                 header("Location: " . Config::BASE_URL . "?c=landing");
             }

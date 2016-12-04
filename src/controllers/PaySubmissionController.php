@@ -1,7 +1,6 @@
 <?php
 namespace cs174\hw5\controllers;
 use cs174\hw5\configs\Config;
-use cs174\hw5\views\SendEmailView;
 
 /**
  * Class PaySubmissionController
@@ -23,13 +22,13 @@ class PaySubmissionController extends Controller{
     public function handlePaymentForm() {
         $paySuccess = $this->tryPayment();
         if($paySuccess === true) {
-            $sev = new SendEmailView();
-            $data = $this->setUpEmailViewData();
-            $sev->render($data);
+            // TODO set up PDF file in database because purchase was successful
+            // send user to send email view
+            header("Location: " . Config::BASE_URL . "?c=email");
         }
         else {
             // send user back to landing page with error message
-            //header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
+            header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
         }
     }
 
@@ -45,7 +44,7 @@ class PaySubmissionController extends Controller{
         $success = $this->charge(Config::STRIPE_CHARGE_AMOUNT, $token, $message);
         unset($_REQUEST['credit_token']);
         if ($success) {
-            echo "\$" . (Config::STRIPE_CHARGE_AMOUNT / 100.0) . " charged!";
+            //echo "\$" . (Config::STRIPE_CHARGE_AMOUNT / 100.0) . " charged!";
             return true;
         } else {
             return "\$" . (Config::STRIPE_CHARGE_AMOUNT / 100.0) . " charge did not go through! (token = \"" . $message . "\")";
@@ -74,8 +73,7 @@ class PaySubmissionController extends Controller{
         if (!empty($credit_info['message'])) {
             $message = $credit_info['message'];
         }
-        return isset($credit_info['status']) &&
-        $credit_info['status'] == 'succeeded';
+        return isset($credit_info['status']) && $credit_info['status'] == 'succeeded';
     }
 
     /**
@@ -114,12 +112,6 @@ class PaySubmissionController extends Controller{
         $response = curl_exec($agent);
         curl_close($agent);
         return $response;
-    }
-
-    private function setUpEmailViewData() {
-        $data = [];
-        $data['base_url'] = Config::BASE_URL;
-        return $data;
     }
 }
 ?>

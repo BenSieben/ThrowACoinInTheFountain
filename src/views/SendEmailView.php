@@ -30,6 +30,9 @@ class SendEmailView extends View {
 <body>
     <h1><a href="<?= $data['base_url'] ?>">Throw-a-Coin-in-the-Fountain</a></h1>
     <h3>Send your wish out!</h3>
+    <form method="post">
+        <label for="email">Email</label><input type="text" id="email" name="email"/>
+    </form>
 </body>
 </html>
 <?php
