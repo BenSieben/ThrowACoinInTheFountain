@@ -32,7 +32,7 @@ class Controller {
                 $sec = new SendEmailController();
                 $sec->setUpView();
             }
-            else if(strcmp($_REQUEST[''], 'pdf') === 0) {  // use PDFController
+            else if(strcmp($_REQUEST['c'], 'pdf') === 0) {  // use PDFController
                 $pdfc = new PDFController();
                 $pdfc->setUpView();
             }

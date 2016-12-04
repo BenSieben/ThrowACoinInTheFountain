@@ -62,6 +62,8 @@ class LandingView extends View{
     -->
     <form id="purchase-stuff-form" method="post" action="?c=paysubmit">
         <input type="hidden" id="credit-token"  name="credit_token" value="" />
+        <p><label for="name">Your Name:</label><input type="text"
+                id="name" size="20" name="name"></p>
         <p><label for="card-number">Card Number:</label><input type="text"
                                                                id="card-number" size="20" data-stripe='number'
                                                                name="card-number" /></p>

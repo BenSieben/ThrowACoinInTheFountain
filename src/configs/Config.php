@@ -34,5 +34,10 @@ class Config {
     // curl constants (for submitting payment token to Stripe)
     const CURL_USERAGENT = "Throw-a-Coin-in-the-Fountain";
     const CURL_TIMEOUT = 20;
+
+    // Emailing constants (for sending out link to wish PDF)
+    const EMAIL_SENDER_ADDRESS = "From: tacitf@tacitf.com";
+    const EMAIL_MESSAGE_START = "You have been invited to look at a wish!\n\r\n\r";
+    const EMAIL_TITLE = "A new wish! | Throw-a-Coin-in-the-Fountain";
 }
 ?>

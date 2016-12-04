@@ -30,7 +30,43 @@ class SendEmailController extends Controller {
     private function setUpEmailViewData() {
         $data = [];
         $data['base_url'] = Config::BASE_URL;
+        // TODO fix PDF link to go to actual pdf!
+        $data['pdf_link'] = "?c=pdf";
+
+        // check for an email being submitted (i.e., send out an email)
+        if(isset($_REQUEST['email']) && strcmp($_REQUEST['email'], '') !== 0) {
+            $email = $_REQUEST['email'];
+            if($this->sendPDFEmail($email)) {
+                // entered email was valid
+                $data['email_message'] = htmlentities("Successfully sent email to $email!");
+            }
+            else {
+                // entered email was invalid
+                $data['email_message'] = htmlentities("An error occurred when attempting to send an email to " .
+                    "$email; please make sure the entered email is valid");
+            }
+        }
         return $data;
+    }
+
+    /**
+     * Sends email with information about the PDF wish just made
+     * to the parameter email
+     * @param $email String email address to send email to
+     * @return boolean true if email was successfully sent, false if it failed
+     */
+    private function sendPDFEmail($email) {
+        if(is_string($email) && !filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            // entered email is valid
+            // TODO add on to message link to the PDF
+            $message = Config::EMAIL_MESSAGE_START;
+            // mail returns true on success email send; false otherwise
+            return mail($email, Config::EMAIL_TITLE, $message, Config::EMAIL_SENDER_ADDRESS);
+        }
+        else {
+            // entered email is invalid
+            return false;
+        }
     }
 
 }
