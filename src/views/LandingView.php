@@ -23,7 +23,6 @@ class LandingView extends View{
     <title>Throw-a-Coin-in-the-Fountain</title>
     <link rel="icon" href="./src/resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
-    <script src="./src/scripts/stripeHelper.js"></script>
 </head>
 <body>
     <h1>Throw-a-Coin-in-the-Fountain</h1>
@@ -75,30 +74,8 @@ class LandingView extends View{
                                                                 id="exp-year" size="2" data-stripe='exp-year' name="exp-year" /></p>
         <p><input type="submit" id="purchase" name="Purchase" value="Submit your wish!"></p>
     </form>
-    <script>
-        function elt(id)
-        {
-            return document.getElementById(id);
-        }
-        elt('purchase').onclick =
-            function(event) {
-                var purchase_form = elt('purchase-stuff-form');
-                elt('purchase').disabled = true; // prevent additional clicks
-                Stripe.card.createToken(purchase_form, tokenResponseHandler);
-                event.preventDefault(); //prevent form submitting till get all clear
-            };
-        function tokenResponseHandler(status, response)
-        {
-            var purchase_form = elt('purchase-stuff-form');
-            if (response.error) {
-                alert(response.error.message);
-                elt('purchase').disabled = false;
-            } else {
-                elt('credit-token').value = response.id;
-                purchase_form.submit();
-            }
-        }
-    </script>
+    <div id="clientErrorMessage"></div>
+    <script type="text/javascript" src="./src/scripts/landingFormChecker.js"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"  ></script>
     <script>
         Stripe.setPublishableKey('<?= $data['stripe_publishable_key'] ?>');

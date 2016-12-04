@@ -61,7 +61,7 @@ class SendEmailController extends Controller {
             // TODO add on to message link to the PDF
             $message = Config::EMAIL_MESSAGE_START;
             // mail returns true on success email send; false otherwise
-            return mail($email, Config::EMAIL_TITLE, $message, Config::EMAIL_SENDER_ADDRESS);
+            return mail($email, Config::EMAIL_TITLE, $message, Config::EMAIL_ADDITIONAL_HEADERS);
         }
         else {
             // entered email is invalid
