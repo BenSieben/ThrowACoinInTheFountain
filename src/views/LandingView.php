@@ -1,5 +1,6 @@
 <?php
 namespace cs174\hw5\views;
+use cs174\hw5\views\elements\FountainImage;
 
 /**
  * Class LandingView
@@ -39,7 +40,7 @@ class LandingView extends View{
         <option value="cn">Chinese (Simplified)</option>
     </select>
     <br />
-    <h3>Make a New Wish!</h3>
+    <h2>Make a New Wish!</h2>
     <!--
     <form action="?c=paysubmit" method="get">
         <label for="name">Your name</label>
@@ -72,7 +73,7 @@ class LandingView extends View{
                                                                   id="exp-month" size="2" data-stripe='exp-month' name="exp-month" /></p>
         <p><label for="exp-year">Expiration Year:</label><input type="text"
                                                                 id="exp-year" size="2" data-stripe='exp-year' name="exp-year" /></p>
-        <p><input type="submit" id="purchase" name="Purchase" value="Submit your wish!"></p>
+        <p><input type="submit" id="purchase" name="Purchase" value="Submit your wish (for <?= $data['stripe_charge_amount'] ?>&cent;)!"></p>
     </form>
     <div id="clientErrorMessage"></div>
     <script type="text/javascript" src="./src/scripts/landingFormChecker.js"></script>
@@ -80,6 +81,16 @@ class LandingView extends View{
     <script>
         Stripe.setPublishableKey('<?= $data['stripe_publishable_key'] ?>');
     </script>
+<?php
+        $fi = new FountainImage();
+        echo($fi->render($data));
+?>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </body>
 </html>
 <?php
