@@ -1,5 +1,6 @@
 <?php
 namespace cs174\hw5\views;
+use cs174\hw5\views\elements\FountainCustomizeElement;
 use cs174\hw5\views\elements\FountainImage;
 
 /**
@@ -34,7 +35,7 @@ class LandingView extends View{
 <?php
         }
 ?>
-    <form id="change-language-form" method="post" action="?c=landing">
+    <form id="change-language-form" method="post" action="?c=sessionchange&m=language">
         <label for="language">Language Selection</label>
         <select name="language" id="language">
             <option value="en" selected="selected">English</option>
@@ -44,27 +45,22 @@ class LandingView extends View{
     </form>
     <h2>Make a New Wish!</h2>
     <h4>Customize Your Fountain Here</h4>
-    <form id="modify-fountain-form" method="post" action="?c=landing">
+    <form id="modify-fountain-form" method="post" action="?c=sessionchange&m=fountain">
         <p><label for="name">Your Name:</label><input type="text"
-                                                      id="name" size="20" name="name"></p>
-        <p><label for="fountain-color">Fountain Color:</label>
-            <select name="fountain-color" id="fountain-color">
-                <option value="white" selected="selected">White</option>
-                <option value="gray">Gray</option>
-            </select>
-        </p>
-        <p><label for="fountain-band-color">Fountain Band Color:</label>
-            <select name="fountain-band-color" id="fountain-band-color">
-                <option value="red" selected="selected">Red</option>
-                <option value="yellow">Yellow</option>
-            </select>
-        </p>
-        <p><label for="fountain-water-color">Fountain Water Color:</label>
-            <select name="fountain-water-color" id="fountain-water-color">
-                <option value="blue" selected="selected">Blue</option>
-                <option value="turquoise">Turquoise</option>
-            </select>
-        </p>
+                                                      id="name" size="20" name="name"
+                                                      value="<?= $data['name'] ?>"></p>
+<?php
+        // render the select tags for the fountain customizations
+        $fountain_color_element = new FountainCustomizeElement('fountain-colors', 'fountain-color',
+            'fountain-color', 'Fountain Color:');
+        echo($fountain_color_element->render($data));
+        $fountain_band_color_element = new FountainCustomizeElement('fountain-band-colors', 'fountain-band-color',
+            'fountain-band-color', 'Fountain Band Color:');
+        echo($fountain_band_color_element->render($data));
+        $fountain_water_color_element = new FountainCustomizeElement('fountain-water-colors', 'fountain-water-color',
+            'fountain-water-color', 'Fountain Water Color:');
+        echo($fountain_water_color_element->render($data));
+?>
         <p><input type="submit" value="Change fountain (pictured below)" /></p>
     </form>
 <?php

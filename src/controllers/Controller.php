@@ -36,6 +36,24 @@ class Controller {
                 $pdfc = new PDFController();
                 $pdfc->setUpView();
             }
+            else if(strcmp($_REQUEST['c'], 'sessionchange') === 0) {  // use SessionChange
+                if(isset($_REQUEST['m'])) {
+                    if(strcmp($_REQUEST['m'], 'language') === 0) {  // call handleLanguageChange
+                        $scc = new SessionChangeController();
+                        $scc->handleLanguageChange();
+                    }
+                    else if(strcmp($_REQUEST['m'], 'fountain') === 0) {  // call handleFountainChange
+                        $scc = new SessionChangeController();
+                        $scc->handleFountainChange();
+                    }
+                    else {  // if m is an unrecognized method, go back to landing page
+                        header("Location: " . Config::BASE_URL . "?c=landing");
+                    }
+                }
+                else {  // if m is not set for session change controller, send user back to landing page
+                    header("Location: " . Config::BASE_URL . "?c=landing");
+                }
+            }
             else {  // default to LandingController if given bad class to use
                 header("Location: " . Config::BASE_URL . "?c=landing");
             }

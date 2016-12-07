@@ -49,12 +49,15 @@ class FountainImage extends Element{
         }
 
         // Now draw the actual fountain
-        // base
+        // base of fountain
         imagefilledrectangle($fountain_img, 200, 225, 300, 375, $fountain_color);
         imagefilledrectangle($fountain_img, 210, 235, 290, 365, $band_color);
         imagefilledrectangle($fountain_img, 220, 245, 280, 355, $fountain_color);
-        // top
+        // middle of fountain
         imagefilledellipse($fountain_img, 250, 175, 200, 200, $fountain_color);
+        imagefilledellipse($fountain_img, 250, 175, 180, 180, $band_color);
+        imagefilledellipse($fountain_img, 250, 175, 160, 160, $fountain_color);
+        // top of fountain
         imagefilledellipse($fountain_img, 250, 125, 300, 200, $fountain_color);
         imagefilledellipse($fountain_img, 250, 125, 275, 180, $band_color);
         imagefilledellipse($fountain_img, 250, 125, 250, 160, $fountain_color);

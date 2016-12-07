@@ -36,7 +36,36 @@ class LandingController extends Controller {
         }
 
         // Check for fountain customizations
-        if(isset($_REQUEST['']))
+        if(isset($_SESSION['name'])) {
+            $data['name'] = $_SESSION['name'];
+        }
+        else {
+            $data['name'] = '';
+        }
+        $data['fountain-colors'] = Config::FOUNTAIN_COLORS;
+        if(isset($_SESSION['fountain-color'])) {
+            $data['fountain-color'] = $_SESSION['fountain-color'];
+        }
+        else {
+            $data['fountain-color'] = Config::FOUNTAIN_DEFAULT_COLOR;
+        }
+
+        $data['fountain-band-colors'] = Config::FOUNTAIN_BAND_COLORS;
+        if(isset($_SESSION['fountain-band-color'])) {
+            $data['fountain-band-color'] = $_SESSION['fountain-band-color'];
+        }
+        else {
+            $data['fountain-band-color'] = Config::FOUNTAIN_BAND_DEFAULT_COLOR;
+        }
+
+        $data['fountain-water-colors'] = Config::FOUNTAIN_WATER_COLORS;
+        if(isset($_SESSION['fountain-water-color'])) {
+            $data['fountain-water-color'] = $_SESSION['fountain-water-color'];
+        }
+        else {
+            $data['fountain-water-color'] = Config::FOUNTAIN_WATER_DEFAULT_COLOR;
+        }
+
         return $data;
     }
 }

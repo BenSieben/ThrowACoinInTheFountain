@@ -39,5 +39,13 @@ class Config {
     const EMAIL_ADDITIONAL_HEADERS = "From: tacitf@tacitf.com";
     const EMAIL_MESSAGE_START = "You have been invited to look at a wish!\n\r\n\r";
     const EMAIL_TITLE = "A new wish! | Throw-a-Coin-in-the-Fountain";
+
+    // Fountain customization constants (for customizing the fountain appearance)
+    const FOUNTAIN_COLORS = ['White', 'Gray'];
+    const FOUNTAIN_DEFAULT_COLOR = 'White';
+    const FOUNTAIN_BAND_COLORS = ['Red', 'Yellow'];
+    const FOUNTAIN_BAND_DEFAULT_COLOR = 'Red';
+    const FOUNTAIN_WATER_COLORS = ['Blue', 'Turquoise'];
+    const FOUNTAIN_WATER_DEFAULT_COLOR = 'Blue';
 }
 ?>

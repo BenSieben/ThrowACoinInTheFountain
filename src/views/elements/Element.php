@@ -13,8 +13,7 @@ abstract class Element {
     /**
      * Renders the element
      * @param $data Array of data to read in to change how the element draws
-     * @return mixed usually won't return anything, but instead outputs
-     * HTML code to put in a View
+     * @return String HTML code of the rendering
      */
     public abstract function render($data);
 }
