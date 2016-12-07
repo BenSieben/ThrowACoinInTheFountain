@@ -16,5 +16,5 @@ $controller = new \cs174\hw5\controllers\Controller();
 $controller->processForms();
 
 // end the session for the user (if uncommented) - useful for some debugging purposes
-session_destroy();
+//session_destroy();
 ?>

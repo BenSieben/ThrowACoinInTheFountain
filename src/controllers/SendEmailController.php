@@ -30,8 +30,13 @@ class SendEmailController extends Controller {
     private function setUpEmailViewData() {
         $data = [];
         $data['base_url'] = Config::BASE_URL;
-        // TODO fix PDF link to go to actual pdf!
-        $data['pdf_link'] = "?c=pdf";
+        // make PDF link to go to actual pdf
+        if(isset($_REQUEST['f'])) {
+            $data['pdf_link'] = "?c=pdf&f=" . $_REQUEST['f'];
+        }
+        else {
+            $data['pdf_link'] = "?c=pdf";
+        }
 
         // check for an email being submitted (i.e., send out an email)
         if(isset($_REQUEST['email']) && strcmp($_REQUEST['email'], '') !== 0) {
@@ -58,8 +63,14 @@ class SendEmailController extends Controller {
     private function sendPDFEmail($email) {
         if(is_string($email) && !filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             // entered email is valid
-            // TODO add on to message link to the PDF
+            // add on to message link to the PDF if it is specified
             $message = Config::EMAIL_MESSAGE_START;
+            if(isset($_REQUEST['f'])) {
+                $message .= "The wish is located at " . Config::BASE_URL . "?c=pdf&f=" . $_REQUEST['f'];
+            }
+            else {
+                $message .= "There was an error in generating the wish PDF link.";
+            }
             // mail returns true on success email send; false otherwise
             return mail($email, Config::EMAIL_TITLE, $message, Config::EMAIL_ADDITIONAL_HEADERS);
         }

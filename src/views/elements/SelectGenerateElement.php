@@ -10,7 +10,7 @@ use cs174\hw5\views\helpers\SelectHelper;
  * based on input data (also a label for the select tag)
  * in a paragraph tag
  */
-class FountainCustomizeElement extends Element{
+class SelectGenerateElement extends Element{
 
     // fields for which indexes in data to look for data to make options for
     //   and which option should be the default
@@ -23,7 +23,7 @@ class FountainCustomizeElement extends Element{
     private $select_text;
 
     /**
-     * Constructs a new FountainCustomizeElement
+     * Constructs a new SelectGenerateElement
      * @param $options String index in $data to find array of options to render
      * @param $default_option String index in $data to find default option
      * @param $select_name String the name / id to give to the select tag

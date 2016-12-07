@@ -37,7 +37,7 @@ class Config {
 
     // Emailing constants (for sending out link to wish PDF)
     const EMAIL_ADDITIONAL_HEADERS = "From: tacitf@tacitf.com";
-    const EMAIL_MESSAGE_START = "You have been invited to look at a wish!\n\r\n\r";
+    const EMAIL_MESSAGE_START = "You have been invited to look at a wish!\n\n";
     const EMAIL_TITLE = "A new wish! | Throw-a-Coin-in-the-Fountain";
 
     // Fountain customization constants (for customizing the fountain appearance)
@@ -55,5 +55,8 @@ class Config {
     const FOUNTAIN_PERMANENT_IMAGE_FOLDER = "./src/resources/fountains/";
     const FOUNTAIN_ERROR_IMAGE_FOLDER = "./src/resources/";
     const FOUNTAIN_ERROR_IMAGE_FILENAME = "fountainerror.png";
+
+    // Some extra constants for wish PDFs
+    const LOGO_IMAGE_FULL_PATH = "./src/resources/favicon_full.png";
 }
 ?>

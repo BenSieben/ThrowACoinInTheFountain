@@ -1,5 +1,7 @@
 <?php
 namespace cs174\hw5\controllers;
+use cs174\hw5\configs\Config;
+use cs174\hw5\models\FountainImageModel;
 use cs174\hw5\views\PDFView;
 
 /**
@@ -14,11 +16,29 @@ class PDFController extends Controller {
 
     /**
      * Sets up, then renders the PDF view
+     * (if given a valid filename)
      */
     public function setUpView() {
-        $pdfv = new PDFView();
-        $data = $this->setUpData();
-        $pdfv->render($data);
+        if(isset($_REQUEST['f']) && is_string($_REQUEST['f'])) {
+            // check for valid f (filename)
+            $fim = new FountainImageModel();
+            if($fim->permanentFountainExists($_REQUEST['f'])) {
+                // the filename is good so set up the PDF for rendering
+                $pdfv = new PDFView();
+                $data = $this->setUpData();
+                $pdfv->render($data);
+            }
+            else {
+                // the filename is bad (send user back to landing page)
+                $_SESSION['errmsg'] = "Error! Specified fountain name was invalid!";
+                header("Location: " . Config::BASE_URL . "?c=landing");
+            }
+        }
+        else {
+            // if filename is not set, send user back to landing page with error message
+            $_SESSION['errmsg'] = "Error! No fountain specified for wish PDF!!";
+            header("Location: " . Config::BASE_URL . "?c=landing");
+        }
     }
 
     /**
@@ -28,8 +48,10 @@ class PDFController extends Controller {
      * in the PDF view
      */
     private function setUpData() {
-        // TODO actually make data
+        // add some image data for the PDFView to use
         $data = [];
+        $data['fountain-image'] = Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER . $_REQUEST['f'] . '.png';
+        $data['logo-image'] = Config::LOGO_IMAGE_FULL_PATH;
         return $data;
     }
 

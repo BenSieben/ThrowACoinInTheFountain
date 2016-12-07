@@ -1,5 +1,6 @@
 <?php
 namespace cs174\hw5\views;
+use FPDF;
 
 /**
  * Class PDFView
@@ -12,11 +13,15 @@ namespace cs174\hw5\views;
 class PDFView extends View {
 
     /**
-     * Renders a HTML page for viewing a PDF wish
+     * Renders a PDF page for viewing a PDF wish
      * @param Array $data data to render on the view
      */
     public function render($data) {
-
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(40,10,'Hello World!');
+        $pdf->Output();
     }
 }
 ?>

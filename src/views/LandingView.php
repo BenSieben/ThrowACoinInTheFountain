@@ -1,6 +1,6 @@
 <?php
 namespace cs174\hw5\views;
-use cs174\hw5\views\elements\FountainCustomizeElement;
+use cs174\hw5\views\elements\SelectGenerateElement;
 use cs174\hw5\views\elements\FountainImage;
 
 /**
@@ -51,13 +51,13 @@ class LandingView extends View{
                                                       value="<?= $data['name'] ?>"></p>
 <?php
         // render the select tags for the fountain customizations
-        $fountain_color_element = new FountainCustomizeElement('fountain-colors', 'fountain-color',
+        $fountain_color_element = new SelectGenerateElement('fountain-colors', 'fountain-color',
             'fountain-color', 'Fountain Color:');
         echo($fountain_color_element->render($data));
-        $fountain_band_color_element = new FountainCustomizeElement('fountain-band-colors', 'fountain-band-color',
+        $fountain_band_color_element = new SelectGenerateElement('fountain-band-colors', 'fountain-band-color',
             'fountain-band-color', 'Fountain Band Color:');
         echo($fountain_band_color_element->render($data));
-        $fountain_water_color_element = new FountainCustomizeElement('fountain-water-colors', 'fountain-water-color',
+        $fountain_water_color_element = new SelectGenerateElement('fountain-water-colors', 'fountain-water-color',
             'fountain-water-color', 'Fountain Water Color:');
         echo($fountain_water_color_element->render($data));
 ?>

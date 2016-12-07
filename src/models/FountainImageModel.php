@@ -32,12 +32,27 @@ class FountainImageModel extends Model {
      * @return boolean true on successful image creation, false otherwise
      */
     public function createPermanentFountain($data) {
+        $filename = $this->generatePermanentFountainFilename($data);
+        if(strcmp($filename, '') !== 0) {  // if a filename was generated, return result of creating the permanent fountain
+            return $this->createFountain($data, Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER, $filename . '.png'); // add .png to file name
+        }
+        return false;
+    }
+
+    /**
+     * Generates a permanent fountain file name based
+     * on given $data
+     * @param $data Array of data information to pull fountain
+     *      customization details from (these are used to generate file name)
+     * @return string the filename to give to the given fountain, or else empty string if bad data is used
+     */
+    public function generatePermanentFountainFilename($data) {
         if(isset($data['fountain-color']) && is_string($data['fountain-color']) && strcmp($data['fountain-color'], '') !== 0 &&
             isset($data['fountain-band-color']) && is_string($data['fountain-band-color']) && strcmp($data['fountain-band-color'], '') !== 0 &&
             isset($data['fountain-water-color']) && is_string($data['fountain-water-color']) && strcmp($data['fountain-water-color'], '') !== 0) {
             // make sure the required customizations are specified
             //  if $data is properly configured, use md5 hash of a combination of all these
-            //   properties (+ name if name is specified)
+            //   properties (+ name if name is specified) to generate an identifying filename
             $filename = '';
             if(isset($data['name']) && is_string($data['name']) && strcmp($data['name'], '') !== 0) {
                 $filename = md5($data['fountain-color'] . $data['fountain-band-color'] .
@@ -47,9 +62,9 @@ class FountainImageModel extends Model {
                 $filename = md5($data['fountain-color'] . $data['fountain-band-color'] .
                     $data['fountain-water-color']);
             }
-            return $this->createFountain($data, Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER, $filename);
+            return $filename;
         }
-        return false;
+        return '';
     }
 
     /**
@@ -149,12 +164,12 @@ class FountainImageModel extends Model {
     /**
      * Checks if a given permanent fountain exists or not, by giving a filename to look for
      * @param $filename String filename of the permanent fountain image to search for
-     * @return true if the image exists; false otherwise
+     * @return true if the file exists; false otherwise
      */
     public function permanentFountainExists($filename) {
         // use the Config's permanent fountain directory and the filename
         //   to verify if the given permanent fountain exists or not
-        return is_file(Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER . $filename);
+        return is_file(Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER . $filename . '.png');
     }
 
 }

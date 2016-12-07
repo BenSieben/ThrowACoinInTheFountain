@@ -32,8 +32,9 @@ class LandingController extends Controller {
         $data['stripe_charge_amount'] = Config::STRIPE_CHARGE_AMOUNT;
 
         // Add error message (if applicable)
-        if(isset($_REQUEST['errmsg']) && strcmp($_REQUEST['errmsg'], "") !== 0) {
-            $data['errmsg'] = htmlentities(urldecode($_REQUEST['errmsg']));
+        if(isset($_SESSION['errmsg']) && strcmp($_SESSION['errmsg'], "") !== 0) {
+            $data['errmsg'] = htmlentities($_SESSION['errmsg']);
+            $_SESSION['errmsg'] = '';
         }
 
         // Check for fountain customizations
@@ -42,6 +43,7 @@ class LandingController extends Controller {
         }
         else {
             $data['name'] = '';
+            $_SESSION['name'] = '';
         }
         $data['fountain-colors'] = Config::FOUNTAIN_COLORS;
         if(isset($_SESSION['fountain-color'])) {
@@ -49,6 +51,7 @@ class LandingController extends Controller {
         }
         else {
             $data['fountain-color'] = Config::FOUNTAIN_DEFAULT_COLOR;
+            $_SESSION['fountain-color'] = Config::FOUNTAIN_DEFAULT_COLOR;
         }
 
         $data['fountain-band-colors'] = Config::FOUNTAIN_BAND_COLORS;
@@ -57,6 +60,7 @@ class LandingController extends Controller {
         }
         else {
             $data['fountain-band-color'] = Config::FOUNTAIN_BAND_DEFAULT_COLOR;
+            $_SESSION['fountain-band-color'] = Config::FOUNTAIN_BAND_DEFAULT_COLOR;
         }
 
         $data['fountain-water-colors'] = Config::FOUNTAIN_WATER_COLORS;
@@ -65,6 +69,7 @@ class LandingController extends Controller {
         }
         else {
             $data['fountain-water-color'] = Config::FOUNTAIN_WATER_DEFAULT_COLOR;
+            $_SESSION['fountain-water-color'] = Config::FOUNTAIN_WATER_DEFAULT_COLOR;
         }
 
         // submit fountain customization data to the FountainImageModel to produce temporary fountain image

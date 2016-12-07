@@ -1,6 +1,7 @@
 <?php
 namespace cs174\hw5\controllers;
 use cs174\hw5\configs\Config;
+use cs174\hw5\models\FountainImageModel;
 
 /**
  * Class PaySubmissionController
@@ -22,13 +23,23 @@ class PaySubmissionController extends Controller{
     public function handlePaymentForm() {
         $paySuccess = $this->tryPayment();
         if($paySuccess === true) {
-            // TODO set up PDF file in database because purchase was successful
-            // send user to send email view
-            header("Location: " . Config::BASE_URL . "?c=email");
+            // use $_SESSION variables to create a permanent fountain image
+            $fim = new FountainImageModel();
+            if($fim->createPermanentFountain($_SESSION)) {
+                $filename = $fim->generatePermanentFountainFilename($_SESSION);
+                // send user to send email view (with the filename as an added argument)
+                header("Location: " . Config::BASE_URL . "?c=email&f=" . $filename);
+            }
+            else {
+                // send user back to landing page with error message indicating image creation failed
+                $_SESSION['errmsg'] = "Error! Unable to generate permanent fountain image. Please try again!";
+                header("Location: " . Config::BASE_URL . "?c=landing");
+            }
         }
         else {
             // send user back to landing page with error message
-            header("Location: " . Config::BASE_URL . "?c=landing&errmsg=" . urlencode($paySuccess));
+            $_SESSION['errmsg'] = "Error! " . $paySuccess;
+            header("Location: " . Config::BASE_URL . "?c=landing");
         }
     }
 
