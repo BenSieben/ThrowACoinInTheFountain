@@ -34,13 +34,45 @@ class LandingView extends View{
 <?php
         }
 ?>
-    <label for="language">Language Selection</label>
-    <select name="language" id="language">
-        <option value="en" selected="selected">English</option>
-        <option value="cn">Chinese (Simplified)</option>
-    </select>
-    <br />
+    <form id="change-language-form" method="post" action="?c=landing">
+        <label for="language">Language Selection</label>
+        <select name="language" id="language">
+            <option value="en" selected="selected">English</option>
+            <option value="cn">Chinese (Simplified)</option>
+        </select>
+        <input type="submit" value="Change language" />
+    </form>
     <h2>Make a New Wish!</h2>
+    <h4>Customize Your Fountain Here</h4>
+    <form id="modify-fountain-form" method="post" action="?c=landing">
+        <p><label for="name">Your Name:</label><input type="text"
+                                                      id="name" size="20" name="name"></p>
+        <p><label for="fountain-color">Fountain Color:</label>
+            <select name="fountain-color" id="fountain-color">
+                <option value="white" selected="selected">White</option>
+                <option value="gray">Gray</option>
+            </select>
+        </p>
+        <p><label for="fountain-band-color">Fountain Band Color:</label>
+            <select name="fountain-band-color" id="fountain-band-color">
+                <option value="red" selected="selected">Red</option>
+                <option value="yellow">Yellow</option>
+            </select>
+        </p>
+        <p><label for="fountain-water-color">Fountain Water Color:</label>
+            <select name="fountain-water-color" id="fountain-water-color">
+                <option value="blue" selected="selected">Blue</option>
+                <option value="turquoise">Turquoise</option>
+            </select>
+        </p>
+        <p><input type="submit" value="Change fountain (pictured below)" /></p>
+    </form>
+<?php
+        $fi = new FountainImage();
+        echo($fi->render($data));
+?>
+    <br />
+    <h4>Submit the Wish PDF Here</h4>
     <!--
     <form action="?c=paysubmit" method="get">
         <label for="name">Your name</label>
@@ -62,8 +94,6 @@ class LandingView extends View{
     -->
     <form id="purchase-stuff-form" method="post" action="?c=paysubmit">
         <input type="hidden" id="credit-token"  name="credit_token" value="" />
-        <p><label for="name">Your Name:</label><input type="text"
-                id="name" size="20" name="name"></p>
         <p><label for="card-number">Card Number:</label><input type="text"
                                                                id="card-number" size="20" data-stripe='number'
                                                                name="card-number" /></p>
@@ -77,14 +107,10 @@ class LandingView extends View{
     </form>
     <div id="clientErrorMessage"></div>
     <script type="text/javascript" src="./src/scripts/landingFormChecker.js"></script>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"  ></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script>
         Stripe.setPublishableKey('<?= $data['stripe_publishable_key'] ?>');
     </script>
-<?php
-        $fi = new FountainImage();
-        echo($fi->render($data));
-?>
     <br />
     <br />
     <br />
