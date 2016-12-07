@@ -12,8 +12,8 @@ namespace cs174\hw5\configs;
 class Config {
 
     // Constant for the full URL to where the index.php file is (leave out /index.php)
-    const BASE_URL = "http://192.168.2.131/hw5";  // H
-    //const BASE_URL = "http://10.250.22.186/hw5";  // S
+    //const BASE_URL = "http://192.168.2.131/hw5";  // H
+    const BASE_URL = "http://10.250.22.186/hw5";  // S
     //const BASE_URL = "http://192.168.2.113/hw5";  // H-L
 
     // Database connection constants
@@ -47,5 +47,13 @@ class Config {
     const FOUNTAIN_BAND_DEFAULT_COLOR = 'Red';
     const FOUNTAIN_WATER_COLORS = ['Blue', 'Turquoise'];
     const FOUNTAIN_WATER_DEFAULT_COLOR = 'Blue';
+
+    // Fountain image files constants (where things are saved)
+    //   (all directories are with respect to root directory of project)
+    const FOUNTAIN_TEMPORARY_IMAGE_FOLDER = "./src/resources/";
+    const FOUNTAIN_TEMPORARY_IMAGE_FILENAME = "tempfountain.png";
+    const FOUNTAIN_PERMANENT_IMAGE_FOLDER = "./src/resources/fountains/";
+    const FOUNTAIN_ERROR_IMAGE_FOLDER = "./src/resources/";
+    const FOUNTAIN_ERROR_IMAGE_FILENAME = "fountainerror.png";
 }
 ?>

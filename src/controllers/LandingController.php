@@ -1,6 +1,7 @@
 <?php
 namespace cs174\hw5\controllers;
 use cs174\hw5\configs\Config;
+use cs174\hw5\models\FountainImageModel;
 use cs174\hw5\views\LandingView;
 
 /**
@@ -64,6 +65,15 @@ class LandingController extends Controller {
         }
         else {
             $data['fountain-water-color'] = Config::FOUNTAIN_WATER_DEFAULT_COLOR;
+        }
+
+        // submit fountain customization data to the FountainImageModel to produce temporary fountain image
+        $fim = new FountainImageModel();
+        if($fim->createTemporaryFountain($data)) {
+            $data['temp-fountain-image-location'] = Config::FOUNTAIN_TEMPORARY_IMAGE_FOLDER . Config::FOUNTAIN_TEMPORARY_IMAGE_FILENAME;
+        }
+        else {  // if an error occurred making the temporary fountain image, use error image instead
+            $data['temp-fountain-image-location'] = Config::FOUNTAIN_ERROR_IMAGE_FOLDER . Config::FOUNTAIN_ERROR_IMAGE_FILENAME;
         }
 
         return $data;

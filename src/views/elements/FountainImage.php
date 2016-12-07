@@ -17,6 +17,7 @@ class FountainImage extends Element{
      * @return String HTML code to render the generated fountain image
      */
     public function render($data) {
+        // TODO Migrate this functionality to model instead (the HTML code goes back in landing view)
         if(!is_array($data)) {
             $data = [];
         }
@@ -25,24 +26,27 @@ class FountainImage extends Element{
 
         // Set up colors to use (based on $data)
         $fountain_color = imagecolorallocate($fountain_img, 255, 255, 255);  // white fountain by default
-        if(isset($data['fountain_color']) && is_string($data['fountain_color']) && strcmp($data['fountain_color'], 'gray') === 0) {
+        if(isset($data['fountain-color']) && is_string($data['fountain-color']) &&
+            strcmp($data['fountain-color'], 'Gray') === 0) {
             $fountain_color = imagecolorallocate($fountain_img, 200, 200, 200); // change fountain to gray
         }
 
         $band_color = imagecolorallocate($fountain_img, 226, 0, 0);  // red band by default
-        if(isset($data['band_color']) && is_string($data['band_color']) && strcmp($data['band_color'], 'yellow') === 0) {
+        if(isset($data['fountain-band-color']) && is_string($data['fountain-band-color']) &&
+            strcmp($data['fountain-band-color'], 'Yellow') === 0) {
             $band_color = imagecolorallocate($fountain_img, 237, 237, 59); // change band to yellow
         }
 
         $water_color = imagecolorallocate($fountain_img, 0, 200, 226);  // blue water by default
-        if(isset($data['water_color']) && is_string($data['band_color']) && strcmp($data['band_color'], 'yellow') === 0) {
-            $water_color = imagecolorallocate($fountain_img, 8, 221, 165); // change band to turquoise
+        if(isset($data['fountain-water-color']) && is_string($data['fountain-water-color']) &&
+            strcmp($data['fountain-water-color'], 'Turquoise') === 0) {
+            $water_color = imagecolorallocate($fountain_img, 8, 221, 165); // change water to turquoise
         }
 
         $text_color = imagecolorallocate($fountain_img, 255, 212, 174);
-        $wish = "A wish for ";
-        if(isset($data['wisher']) && is_string($data['wisher']) && strcmp(trim($data['wisher']), '') !== 0) {
-            $wish .= trim($data['wisher']) . "!";
+        $wish = "A wish fountain for ";
+        if(isset($data['name']) && is_string($data['name']) && strcmp(trim($data['name']), '') !== 0) {
+            $wish .= trim($data['name']) . "!";
         }
         else {
             $wish .= "you!";
@@ -70,7 +74,7 @@ class FountainImage extends Element{
 
         imagedestroy($fountain_img);
 
-        return '    <img src="./src/resources/fountain.png" alt="fountain" style="position:relative; top:15px;" />';
+        return '    <img src="./src/resources/fountain.png" alt="fountain" />';
     }
 }
 ?>

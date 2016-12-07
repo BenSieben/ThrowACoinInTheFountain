@@ -14,6 +14,7 @@ class Model {
 
     /**
      * Creates and returns a database connection for the Throw-a-Coin-in-the-Fountain website
+     * (unused for this project because a database is not technically needed)
      * @return \mysqli the database connection (based on settings in Config.php)
      */
     protected function getDatabaseConnection() {

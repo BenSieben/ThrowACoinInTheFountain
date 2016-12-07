@@ -63,10 +63,7 @@ class LandingView extends View{
 ?>
         <p><input type="submit" value="Change fountain (pictured below)" /></p>
     </form>
-<?php
-        $fi = new FountainImage();
-        echo($fi->render($data));
-?>
+    <img src="<?= $data['temp-fountain-image-location'] ?>" alt="fountain" />
     <br />
     <h4>Submit the Wish PDF Here</h4>
     <!--
