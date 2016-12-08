@@ -33,9 +33,23 @@ class SendEmailController extends Controller {
         // make PDF link to go to actual pdf
         if(isset($_REQUEST['f'])) {
             $data['pdf_link'] = "?c=pdf&f=" . $_REQUEST['f'];
+            $data['f'] = $_REQUEST['f'];
         }
         else {
             $data['pdf_link'] = "?c=pdf";
+            $data['f'] = '';
+        }
+
+        // set up locale
+        putenv('LC_ALL=en_US');
+        setlocale(LC_ALL, 'en_US'); // say locale
+        if(strcmp($_SESSION['language'], 'English') === 0) {
+            bindtextdomain("messages_en-US", "./locale"); // say locale dir
+            textdomain("messages_en-US"); // say .mo file
+        }
+        else if(strcmp($_SESSION['language'], '简体中文') === 0) {
+            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
+            textdomain("messages_zh-CN"); // say .mo file
         }
 
         // check for an email being submitted (i.e., send out an email)
@@ -43,14 +57,21 @@ class SendEmailController extends Controller {
             $email = $_REQUEST['email'];
             if($this->sendPDFEmail($email)) {
                 // entered email was valid
-                $data['email_message'] = htmlentities("Successfully sent email to $email!");
+                $data['email_message'] = htmlentities(gettext("Successfully sent email to ") . "$email!");
             }
             else {
                 // entered email was invalid
-                $data['email_message'] = htmlentities("An error occurred when attempting to send an email to " .
-                    "$email; please make sure the entered email is valid");
+                $data['email_message'] = htmlentities(gettext("An error occurred when attempting to send an email to ") .
+                    "$email; " . gettext("please make sure the entered email is valid"));
             }
         }
+
+        // set up some text for the view
+        $data['send-email-text'] = gettext('Send your wish out! (You can directly view your wish at ');
+        $data['email-text'] = gettext('Email ');
+        $data['here-text'] = gettext('here');
+        $data['send-text'] = gettext('Send');
+
         return $data;
     }
 
@@ -66,10 +87,10 @@ class SendEmailController extends Controller {
             // add on to message link to the PDF if it is specified
             $message = Config::EMAIL_MESSAGE_START;
             if(isset($_REQUEST['f'])) {
-                $message .= "The wish is located at " . Config::BASE_URL . "?c=pdf&f=" . $_REQUEST['f'];
+                $message .= gettext("The wish is located at ") . Config::BASE_URL . "?c=pdf&f=" . $_REQUEST['f'];
             }
             else {
-                $message .= "There was an error in generating the wish PDF link.";
+                $message .= gettext("There was an error in generating the wish PDF link.");
             }
             // mail returns true on success email send; false otherwise
             return mail($email, Config::EMAIL_TITLE, $message, Config::EMAIL_ADDITIONAL_HEADERS);

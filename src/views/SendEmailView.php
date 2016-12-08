@@ -29,11 +29,12 @@ class SendEmailView extends View {
 </head>
 <body>
     <h1><a href="<?= $data['base_url'] ?>">Throw-a-Coin-in-the-Fountain</a></h1>
-    <h3>Send your wish out! (You can directly view your wish <a href="<?= $data['pdf_link'] ?>">here</a>)</h3>
+    <h3><?= $data['send-email-text'] ?><a href="<?= $data['pdf_link'] ?>"><?= $data['here-text'] ?></a>)</h3>
     <form method="get">
         <input type="hidden" name="c" value="email" />
-        <label for="email">Email </label><input type="text" id="email" name="email" />
-        <input type="submit" value="Send"/>
+        <input type="hidden" name="f" value="<?= $data['f'] ?>" />
+        <label for="email"><?= $data['email-text'] ?></label><input type="text" id="email" name="email" />
+        <input type="submit" value="<?= $data['send-text'] ?>"/>
     </form>
 <?php
         if(isset($data['email_message'])) {

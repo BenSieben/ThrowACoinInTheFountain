@@ -21,6 +21,18 @@ class PaySubmissionController extends Controller{
      * those values
      */
     public function handlePaymentForm() {
+        // set up locale
+        putenv('LC_ALL=en_US');
+        setlocale(LC_ALL, 'en_US'); // say locale
+        if(strcmp($_SESSION['language'], 'English') === 0) {
+            bindtextdomain("messages_en-US", "./locale"); // say locale dir
+            textdomain("messages_en-US"); // say .mo file
+        }
+        else if(strcmp($_SESSION['language'], '简体中文') === 0) {
+            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
+            textdomain("messages_zh-CN"); // say .mo file
+        }
+
         $paySuccess = $this->tryPayment();
         if($paySuccess === true) {
             // use $_SESSION variables to create a permanent fountain image
@@ -32,13 +44,13 @@ class PaySubmissionController extends Controller{
             }
             else {
                 // send user back to landing page with error message indicating image creation failed
-                $_SESSION['errmsg'] = "Error! Unable to generate permanent fountain image. Please try again!";
+                $_SESSION['errmsg'] = gettext("Error! Unable to generate permanent fountain image. Please try again!");
                 header("Location: " . Config::BASE_URL . "?c=landing");
             }
         }
         else {
             // send user back to landing page with error message
-            $_SESSION['errmsg'] = "Error! " . $paySuccess;
+            $_SESSION['errmsg'] = gettext("Error! ") . $paySuccess;
             header("Location: " . Config::BASE_URL . "?c=landing");
         }
     }

@@ -37,6 +37,16 @@ class LandingController extends Controller {
             $_SESSION['errmsg'] = '';
         }
 
+        // Check for language change
+        $data['languages'] = Config::LANGUAGES;
+        if(isset($_SESSION['language'])) {
+            $data['language'] = $_SESSION['language'];
+        }
+        else {
+            $data['language'] = Config::LANGUAGE_DEFAULT;
+            $_SESSION['language'] = Config::LANGUAGE_DEFAULT;
+        }
+
         // Check for fountain customizations
         if(isset($_SESSION['name'])) {
             $data['name'] = $_SESSION['name'];
@@ -80,6 +90,35 @@ class LandingController extends Controller {
         else {  // if an error occurred making the temporary fountain image, use error image instead
             $data['temp-fountain-image-location'] = Config::FOUNTAIN_ERROR_IMAGE_FOLDER . Config::FOUNTAIN_ERROR_IMAGE_FILENAME;
         }
+
+        // set up locale
+        putenv('LC_ALL=en_US');
+        setlocale(LC_ALL, 'en_US'); // say locale
+        if(strcmp($data['language'], 'English') === 0) {
+            bindtextdomain("messages_en-US", "./locale"); // say locale dir
+            textdomain("messages_en-US"); // say .mo file
+        }
+        else if(strcmp($data['language'], '简体中文') === 0) {
+            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
+            textdomain("messages_zh-CN"); // say .mo file
+        }
+
+        // all the text displaying on the landing page (use gettext in case of language change)
+        $data['language-selection-text'] = gettext('Language Selection');
+        $data['change-language-text'] = gettext('Change Language');
+        $data['make-wish-text'] = gettext('Make a New Wish!');
+        $data['customize-fountain-text'] = gettext('Customize Your Fountain Here');
+        $data['your-name-text'] = gettext('Your Name:');
+        $data['fountain-color-text'] = gettext('Fountain Color:');
+        $data['fountain-band-text'] = gettext('Fountain Band Color:');
+        $data['fountain-water-text'] = gettext('Fountain Water Color:');
+        $data['change-fountain-text'] = gettext('Change Fountain (Pictured Below)');
+        $data['submit-pdf-text'] = gettext('Submit the Wish PDF Here');
+        $data['card-number-text'] = gettext('Credit Card Number:');
+        $data['cvc-text'] = gettext('CVC:');
+        $data['expiration-month-text'] = gettext('Expiration Month:');
+        $data['expiration-year-text'] = gettext('Expiration Year:');
+        $data['submit-wish-text'] = gettext('Submit Your Wish (');
 
         return $data;
     }

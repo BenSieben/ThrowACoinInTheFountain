@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-08 10:32-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: LandingController.php:101
+msgid "Language Selection"
+msgstr "Language Selection"
+
+#: LandingController.php:102
+msgid "Change Language"
+msgstr "Change Language"
+
+#: LandingController.php:103
+msgid "Make a New Wish!"
+msgstr "Make a New Wish!"
+
+#: LandingController.php:104
+msgid "Customize Your Fountain Here"
+msgstr "Customize Your Fountain Here"
+
+#: LandingController.php:105
+msgid "Your Name:"
+msgstr "Your Name:"
+
+#: LandingController.php:106
+msgid "Fountain Color:"
+msgstr "Fountain Color:"
+
+#: LandingController.php:107
+msgid "Fountain Band Color:"
+msgstr "Fountain Band Color:"
+
+#: LandingController.php:108
+msgid "Fountain Water Color:"
+msgstr "Fountain Water Color:"
+
+#: LandingController.php:109
+msgid "Change Fountain (Pictured Below)"
+msgstr "Change Fountain (Pictured Below)"
+
+#: LandingController.php:110
+msgid "Submit the Wish PDF Here"
+msgstr "Submit the Wish PDF Here"
+
+#: LandingController.php:111
+msgid "Credit Card Number:"
+msgstr "Credit Card Number:"
+
+#: LandingController.php:112
+msgid "CVC:"
+msgstr "CVC:"
+
+#: LandingController.php:113
+msgid "Expiration Month:"
+msgstr "Expiration Month:"
+
+#: LandingController.php:114
+msgid "Expiration Year:"
+msgstr "Expiration Year:"
+
+#: LandingController.php:115
+msgid "Submit Your Wish ("
+msgstr "Submit Your Wish ("
+
+#: PaySubmissionController.php:47
+msgid "Error! Unable to generate permanent fountain image. Please try again!"
+msgstr "Error! Unable to generate permanent fountain image. Please try again!"
+
+#: PaySubmissionController.php:53
+msgid "Error! "
+msgstr "Error! "
+
+#: PDFController.php:33
+msgid "Error! Specified fountain name was invalid!"
+msgstr "Error! Specified fountain name was invalid!"
+
+#: PDFController.php:39
+msgid "Error! No fountain specified for wish PDF!"
+msgstr "Error! No fountain specified for wish PDF!"
+
+#: SendEmailController.php:58
+msgid "Successfully sent email to "
+msgstr "Successfully sent email to "
+
+#: SendEmailController.php:62
+msgid "An error occurred when attempting to send an email to "
+msgstr "An error occurred when attempting to send an email to "
+
+#: SendEmailController.php:63
+msgid "please make sure the entered email is valid"
+msgstr "please make sure the entered email is valid"
+
+#: SendEmailController.php:68
+msgid "Send your wish out! (You can directly view your wish at "
+msgstr "Send your wish out! (You can directly view your wish at "
+
+#: SendEmailController.php:71
+msgid "Email "
+msgstr "Email "
+
+#: SendEmailController.php:72
+msgid "here"
+msgstr "here"
+
+#: SendEmailController.php:73
+msgid "Send"
+msgstr "Send"
+
+#: SendEmailController.php:86
+msgid "The wish is located at "
+msgstr "The wish is located at "
+
+#: SendEmailController.php:89
+msgid "There was an error in generating the wish PDF link."
+msgstr "There was an error in generating the wish PDF link."

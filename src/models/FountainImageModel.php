@@ -102,7 +102,7 @@ class FountainImageModel extends Model {
         }
 
         $text_color = imagecolorallocate($fountain_img, 255, 212, 174);
-        $wish = "A wish fountain for ";
+        $wish = "A Wish Fountain for ";
         if(isset($data['name']) && is_string($data['name']) && strcmp(trim($data['name']), '') !== 0) {
             $wish .= trim($data['name']) . "!";
         }

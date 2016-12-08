@@ -30,13 +30,13 @@ class PDFController extends Controller {
             }
             else {
                 // the filename is bad (send user back to landing page)
-                $_SESSION['errmsg'] = "Error! Specified fountain name was invalid!";
+                $_SESSION['errmsg'] = gettext("Error! Specified fountain name was invalid!");
                 header("Location: " . Config::BASE_URL . "?c=landing");
             }
         }
         else {
             // if filename is not set, send user back to landing page with error message
-            $_SESSION['errmsg'] = "Error! No fountain specified for wish PDF!!";
+            $_SESSION['errmsg'] = gettext("Error! No fountain specified for wish PDF!");
             header("Location: " . Config::BASE_URL . "?c=landing");
         }
     }
@@ -52,6 +52,19 @@ class PDFController extends Controller {
         $data = [];
         $data['fountain-image'] = Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER . $_REQUEST['f'] . '.png';
         $data['logo-image'] = Config::LOGO_IMAGE_FULL_PATH;
+
+        // set up locale
+        putenv('LC_ALL=en_US');
+        setlocale(LC_ALL, 'en_US'); // say locale
+        if(strcmp($_SESSION['language'], 'English') === 0) {
+            bindtextdomain("messages_en-US", "./locale"); // say locale dir
+            textdomain("messages_en-US"); // say .mo file
+        }
+        else if(strcmp($_SESSION['language'], '简体中文') === 0) {
+            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
+            textdomain("messages_zh-CN"); // say .mo file
+        }
+        $data['thanks-for-wish-text'] = 'Thanks for your wish!';
         return $data;
     }
 

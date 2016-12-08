@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-08 10:36-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: LandingController.php:101
+msgid "Language Selection"
+msgstr "语言选择"
+
+#: LandingController.php:102
+msgid "Change Language"
+msgstr "改变语言"
+
+#: LandingController.php:103
+msgid "Make a New Wish!"
+msgstr "新的愿望！"
+
+#: LandingController.php:104
+msgid "Customize Your Fountain Here"
+msgstr "在这里定制你的喷泉"
+
+#: LandingController.php:105
+msgid "Your Name:"
+msgstr "你的名字："
+
+#: LandingController.php:106
+msgid "Fountain Color:"
+msgstr "喷泉颜色："
+
+#: LandingController.php:107
+msgid "Fountain Band Color:"
+msgstr "喷泉带颜色："
+
+#: LandingController.php:108
+msgid "Fountain Water Color:"
+msgstr "喷泉水颜色："
+
+#: LandingController.php:109
+msgid "Change Fountain (Pictured Below)"
+msgstr "更改喷泉（如下图所示）"
+
+#: LandingController.php:110
+msgid "Submit the Wish PDF Here"
+msgstr "提交愿望PDF这里"
+
+#: LandingController.php:111
+msgid "Credit Card Number:"
+msgstr "信用卡号码："
+
+#: LandingController.php:112
+msgid "CVC:"
+msgstr "CVC:"
+
+#: LandingController.php:113
+msgid "Expiration Month:"
+msgstr "到期月份："
+
+#: LandingController.php:114
+msgid "Expiration Year:"
+msgstr "到期年份："
+
+#: LandingController.php:115
+msgid "Submit Your Wish ("
+msgstr "提交您的愿望 ("
+
+#: PaySubmissionController.php:47
+msgid "Error! Unable to generate permanent fountain image. Please try again!"
+msgstr "错误！ 无法生成永久喷泉图像。 请再试一次"
+
+#: PaySubmissionController.php:53
+msgid "Error! "
+msgstr "错误！ "
+
+#: PDFController.php:33
+msgid "Error! Specified fountain name was invalid!"
+msgstr "错误！ 指定的喷泉名称无效！"
+
+#: PDFController.php:39
+msgid "Error! No fountain specified for wish PDF!"
+msgstr "错误！ 没有为愿望PDF指定的喷泉！"
+
+#: SendEmailController.php:58
+msgid "Successfully sent email to "
+msgstr "已成功发送电子邮件至 "
+
+#: SendEmailController.php:62
+msgid "An error occurred when attempting to send an email to "
+msgstr "尝试向其发送电子邮件时出错 "
+
+#: SendEmailController.php:63
+msgid "please make sure the entered email is valid"
+msgstr "请确保输入的电子邮件有效"
+
+#: SendEmailController.php:68
+msgid "Send your wish out! (You can directly view your wish at "
+msgstr "发送您的愿望！ （你可以直接查看你的愿望 "
+
+#: SendEmailController.php:69
+msgid "Email "
+msgstr "电子邮件 "
+
+#: SendEmailController.php:72
+msgid "here"
+msgstr "这里"
+
+#: SendEmailController.php:73
+msgid "Send"
+msgstr "发送"
+
+#: SendEmailController.php:86
+msgid "The wish is located at "
+msgstr "希望位于 "
+
+#: SendEmailController.php:89
+msgid "There was an error in generating the wish PDF link."
+msgstr "生成愿望PDF链接时出错。"

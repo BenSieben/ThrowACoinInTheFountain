@@ -15,12 +15,11 @@ class SessionChangeController extends Controller {
     /**
      * Reacts to the changing of display language
      * on the landing page
-     * (reading in data from $_REQUEST)
+     * (reading in data from $_POST)
      */
     public function handleLanguageChange() {
-        // TODO actually handle language change(?)
-        if(isset($_REQUEST['language'])) {
-            $_SESSION['language'] = $_REQUEST['language'];
+        if(isset($_POST['language'])) {
+            $_SESSION['language'] = $_POST['language'];
         }
         // send user back to landing page with updated session variables
         header("Location: " . Config::BASE_URL . "?c=landing");
@@ -29,24 +28,24 @@ class SessionChangeController extends Controller {
     /**
      * Reacts to the changing of the fountain
      * options on the landing page
-     * (reading in data from $_REQUEST)
+     * (reading in data from $_POST)
      */
     public function handleFountainChange() {
-        // TODO actually handle fountain changes(?)
         // examine fountain changes
-        if(isset($_REQUEST['name'])) {
-            $_SESSION['name'] = $_REQUEST['name'];
+        if(isset($_POST['name'])) {
+            // for the name, cut out non-alpha / non-punctuation characters
+            $_SESSION['name'] = trim(preg_replace('/[^a-zA-Z\.\']/', '', $_POST['name']));
         }
-        if(isset($_REQUEST['fountain-color'])) {
-            $_SESSION['fountain-color'] = $_REQUEST['fountain-color'];
+        if(isset($_POST['fountain-color'])) {
+            $_SESSION['fountain-color'] = $_POST['fountain-color'];
         }
         // examine fountain band color change
-        if(isset($_REQUEST['fountain-band-color'])) {
-            $_SESSION['fountain-band-color'] = $_REQUEST['fountain-band-color'];
+        if(isset($_POST['fountain-band-color'])) {
+            $_SESSION['fountain-band-color'] = $_POST['fountain-band-color'];
         }
         // examine fountain water color change
-        if(isset($_REQUEST['fountain-water-color'])) {
-            $_SESSION['fountain-water-color'] = $_REQUEST['fountain-water-color'];
+        if(isset($_POST['fountain-water-color'])) {
+            $_SESSION['fountain-water-color'] = $_POST['fountain-water-color'];
         }
         // send user back to landing page with updated session variables
         header("Location: " . Config::BASE_URL . "?c=landing");
