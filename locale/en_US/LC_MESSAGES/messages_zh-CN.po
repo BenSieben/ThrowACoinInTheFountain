@@ -121,6 +121,10 @@ msgstr "这里"
 msgid "Send"
 msgstr "发送"
 
+#: SendEmailController.php:74
+msgid "Send Wish Emails"
+msgstr "发送愿望电子邮件"
+
 #: SendEmailController.php:86
 msgid "The wish is located at "
 msgstr "希望位于 "

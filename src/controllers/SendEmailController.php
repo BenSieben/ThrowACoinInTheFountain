@@ -71,6 +71,7 @@ class SendEmailController extends Controller {
         $data['email-text'] = gettext('Email ');
         $data['here-text'] = gettext('here');
         $data['send-text'] = gettext('Send');
+        $data['send-emails-title-text'] = gettext('Send Wish Emails');
 
         return $data;
     }

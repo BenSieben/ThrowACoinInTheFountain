@@ -23,7 +23,7 @@ class SendEmailView extends View {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Send Wish Emails | Throw-a-Coin-in-the-Fountain</title>
+    <title><?= $data['send-emails-title-text'] ?> | Throw-a-Coin-in-the-Fountain</title>
     <link rel="icon" href="./src/resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
 </head>

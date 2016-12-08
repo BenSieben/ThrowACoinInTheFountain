@@ -121,6 +121,10 @@ msgstr "here"
 msgid "Send"
 msgstr "Send"
 
+#: SendEmailController.php:74
+msgid "Send Wish Emails"
+msgstr "Send Wish Emails"
+
 #: SendEmailController.php:86
 msgid "The wish is located at "
 msgstr "The wish is located at "
