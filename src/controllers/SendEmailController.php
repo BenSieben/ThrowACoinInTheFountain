@@ -40,18 +40,6 @@ class SendEmailController extends Controller {
             $data['f'] = '';
         }
 
-        // set up locale
-        putenv('LC_ALL=en_US');
-        setlocale(LC_ALL, 'en_US'); // say locale
-        if(strcmp($_SESSION['language'], 'English') === 0) {
-            bindtextdomain("messages_en-US", "./locale"); // say locale dir
-            textdomain("messages_en-US"); // say .mo file
-        }
-        else if(strcmp($_SESSION['language'], '简体中文') === 0) {
-            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
-            textdomain("messages_zh-CN"); // say .mo file
-        }
-
         // check for an email being submitted (i.e., send out an email)
         if(isset($_REQUEST['email']) && strcmp($_REQUEST['email'], '') !== 0) {
             $email = $_REQUEST['email'];

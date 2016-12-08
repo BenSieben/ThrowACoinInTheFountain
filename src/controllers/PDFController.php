@@ -52,18 +52,6 @@ class PDFController extends Controller {
         $data = [];
         $data['fountain-image'] = Config::FOUNTAIN_PERMANENT_IMAGE_FOLDER . $_REQUEST['f'] . '.png';
         $data['logo-image'] = Config::LOGO_IMAGE_FULL_PATH;
-
-        // set up locale
-        putenv('LC_ALL=en_US');
-        setlocale(LC_ALL, 'en_US'); // say locale
-        if(strcmp($_SESSION['language'], 'English') === 0) {
-            bindtextdomain("messages_en-US", "./locale"); // say locale dir
-            textdomain("messages_en-US"); // say .mo file
-        }
-        else if(strcmp($_SESSION['language'], '简体中文') === 0) {
-            bindtextdomain("messages_zh-CN", "./locale"); // say locale dir
-            textdomain("messages_zh-CN"); // say .mo file
-        }
         $data['thanks-for-wish-text'] = 'Thanks for your wish!';
         return $data;
     }
